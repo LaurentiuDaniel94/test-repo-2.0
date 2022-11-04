@@ -9,16 +9,19 @@ jobs:
       - name: install dependencies
         run: npm ci
   lint:
+    needs: [preBuild]
     runs-on: ubuntu-latest
     steps:
       - name: Lint
         run: npm run lint
   test:
+    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - name: Test
         run: npm test
   build:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Build code
