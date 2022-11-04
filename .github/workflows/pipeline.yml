@@ -1,0 +1,27 @@
+name: Deployment01
+on: push
+jobs:
+  preBuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: npm ci
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - nane: Lint
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: npm test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build code
+        run: npm run build
+      - name: deploy code
+        run: echo "Deployment..."
