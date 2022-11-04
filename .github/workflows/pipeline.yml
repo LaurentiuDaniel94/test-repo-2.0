@@ -12,18 +12,30 @@ jobs:
     needs: [preBuild]
     runs-on: ubuntu-latest
     steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: npm ci
       - name: Lint
         run: npm run lint
   test:
     needs: [lint]
     runs-on: ubuntu-latest
     steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: npm ci
       - name: Test
         run: npm test
   build:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: npm ci
       - name: Build code
         run: npm run build
       - name: deploy code
